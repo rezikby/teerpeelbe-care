@@ -12,29 +12,60 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('Username', 25)->primary();
+            $table->string('Nama', 25);
+            $table->enum('Asal', [
+                'Aceh',
+                'Sumatera Utara',
+                'Sumatera Barat',
+                'Riau',
+                'Kepulauan Riau',
+                'Jambi',
+                'Sumatera Selatan',
+                'Kepulauan Bangka Belitung',
+                'Bengkulu',
+                'Lampung',
+                'DKI Jakarta',
+                'Jawa Barat',
+                'Jawa Tengah',
+                'DI Yogyakarta',
+                'Jawa Timur',
+                'Banten',
+                'Bali',
+                'Nusa Tenggara Barat',
+                'Nusa Tenggara Timur',
+                'Kalimantan Barat',
+                'Kalimantan Tengah',
+                'Kalimantan Selatan',
+                'Kalimantan Timur',
+                'Kalimantan Utara',
+                'Sulawesi Utara',
+                'Sulawesi Tengah',
+                'Sulawesi Selatan',
+                'Sulawesi Tenggara',
+                'Gorontalo',
+                'Sulawesi Barat',
+                'Maluku',
+                'Maluku Utara',
+                'Papua',
+                'Papua Barat',
+                'Papua Selatan',
+                'Papua Tengah',
+                'Papua Pegunungan',
+                'Papua Barat Daya'
+            ]);
+            $table->text('Alamat');
+            $table->string('No_Telpon', 13);
+            $table->string('Password'); 
+            $table->enum('role', ['admin', 'users'])
+                ->default('users');
+
             $table->timestamps();
         });
 
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
+        // nulable = dek hal dak di isi
+        // kalau dak d nullable = harus di isi
 
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->longText('payload');
-            $table->integer('last_activity')->index();
-        });
     }
 
     /**

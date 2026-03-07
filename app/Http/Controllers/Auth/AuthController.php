@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+
 class AuthController extends Controller
 {
     public function register(RegisterRequest $request)
@@ -21,7 +22,7 @@ class AuthController extends Controller
                 'Alamat'    => $request->Alamat,
                 'No_Telpon' => $request->No_Telpon,
                 'Password'  => Hash::make($request->Password),
-                'role'      => 'users'
+                'role'      => $request->role
             ]);
 
             // response berhasail
@@ -29,18 +30,18 @@ class AuthController extends Controller
                 'status'  => true,
                 'code'    => 201,
                 'message' => 'Registrasi berhasil',
-                'data'    => [
-                    'Username'  => $user->Username,
-                    'Nama'      => $user->Nama,
-                    'Asal'      => $user->Asal,
-                    'Alamat'    => $user->Alamat,
-                    'dibuat_pada' => $user->created_at
-                ]
+                // 'data'    => [
+                //     'Username'  => $user->Username,
+                //     'Nama'      => $user->Nama,
+                //     'Asal'      => $user->Asal,
+                //     'Alamat'    => $user->Alamat,
+                //     "role"      => $user->role,
+                //     'dibuat_pada' => $user->created_at
+                // ]
             ], 201);
-
         } catch (\Exception $e) {
 
-        // response eror
+            // response eror
             return response()->json([
                 'status'  => false,
                 'code'    => 500,
@@ -51,31 +52,42 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        // Cek user berdasarkan Username
-        $user = User::where('Username', $request->Username)->first();
+        try {
 
-        // kalouser tidak ditemukan atau password salah
-        if (!$user || !Hash::check($request->Password, $user->Password)) {
+            $user = User::where('Username', $request->Username)->first();
+
+            if (!$user) {
+                return response()->json([
+                    'status' => false,
+                    'code' => 401,
+                    'message' => 'Username tidak ditemukan'
+                ], 401);
+            }
+
+            if (!Hash::check($request->Password, $user->Password)) {
+                return response()->json([
+                    'status' => false,
+                    'code' => 401,
+                    'message' => 'Password salah'
+                ], 401);
+            }
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+
             return response()->json([
-                'status'  => false,
-                'code'    => 401,
-                'message' => 'Username atau Password salah'
-            ], 401);
-        }
+                'status' => true,
+                'code' => 200,
+                'message' => 'Login berhasil',
+                'token_type' => 'Bearer',
+                'token' => $token
+            ], 200);
+        } catch (\Exception $e) {
 
-        // Jika login berhasil
-        return response()->json([
-            'status'  => true,
-            'code'    => 200,
-            'message' => 'Login berhasil',
-            'data'    => [
-                'Username'    => $user->Username,
-                'Nama'        => $user->Nama,
-                'Asal'        => $user->Asal,
-                'Alamat'      => $user->Alamat,
-                'No_Telpon'   => $user->No_Telpon,
-                'dibuat_pada' => $user->created_at
-            ]
-        ], 200);
+            return response()->json([
+                'status' => false,
+                'message' => 'Server error',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 }

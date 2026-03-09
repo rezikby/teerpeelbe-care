@@ -6,14 +6,105 @@ body {
     padding: 0;
 }
 
-/* Kontainer form */
-form {
-    background-color: white;
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px 30px;
-    border-radius: 18px;
-    box-shadow: 0 0 10px rgba(165, 160, 160, 0.1);
+/* layout kiri-kanan */
+.container{
+    display:flex;
+    min-height:100vh; /* tinggi minimal full viewport */
+}
+
+/* HERO KIRI */
+.main{
+    width:30%;
+    min-height:auto;       /* otomatis sesuai isi */
+    padding: 40px 70px;    /* jarak atas/bawah */
+    color:white;
+    position: relative;
+    gap: 10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start; /* naik ke atas */
+    background: linear-gradient(135deg,#4c2bbd,#1f4ed8);
+}
+
+.main h1 {
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;           
+    align-items: center;     
+    gap: 10px;  
+    margin: 0;
+}
+
+.main h1 i {
+    color:rgb(255, 255, 255);       
+    font-size: 32px;         
+}
+
+.main span{
+    color:#b8b6ff;
+}
+
+/* badge kesehatan */
+.kes{
+    margin-top:10px;
+}
+
+.kes p{
+    display:inline-block;
+    padding:8px 18px;
+    margin-top: 0;
+    gap: 0;
+    border-radius:20px;
+    font-size:14px;
+    background:rgba(255,255,255,0.15);
+}
+
+.judul h1,
+.main span,
+.texs p {
+    width: 70%;         /* samakan lebar semua teks */
+    margin: 0;          /* hilangkan margin default */
+    padding: 0;         /* padding internal terserah masing-masing elemen */
+    text-align: left;   /* rata kiri semua */
+}
+
+.judul h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px; /* jarak ke teks berikutnya */
+}
+
+.main span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px; /* jarak ke deskripsi */
+    color: #b8b6ff;
+}
+
+.texs p {
+    padding: 0;          /* kalau mau rapi, padding internal bisa diatur */
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: left;
+}
+/* Form wrapper kanan */
+.form-wrapper{
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center; /* mulai dari atas */
+    align-items:center;
+    padding-top: 10px;
+    margin: auto;
+    align-items: center;
+}
+
+/* Form */
+.form-wrapper form{
+    width:70%;
+    margin-bottom:0;
+    padding-top: 0px; /* cukup jarak dari judul form */
 }
 
 /* Judul form */
@@ -26,7 +117,7 @@ form {
     border-radius:14px;
     box-shadow: 1px 1px 7px 1px rgb(203, 198, 198);
     padding:8px 10px;
-
+    margin-top: 12px;
 }
 
 .kata a{
@@ -46,6 +137,7 @@ form {
     padding:12px 30px;
     width: 50%;
 }
+
 /* Label & input */
 label {
     display: block;
@@ -109,13 +201,27 @@ ul li {
     margin-bottom: 5px;
 }
 
+/* responsive */
 @media screen and (max-width:768px){
+    .container{
+        flex-direction:column;
+    }
+
+    .main{
+        width:100%;
+        height:auto;
+    }
+
+    .form-wrapper{
+        width:100%;
+    }
+
     form{
-        width: 380px;
+        width:380px;
     }
 
     .kata{
-        width: 350px;
-        gap: 90px;
+        width:350px;
+        gap:90px;
     }
 }

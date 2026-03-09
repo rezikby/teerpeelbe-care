@@ -16,10 +16,17 @@
     @endif
     
    <form method="POST" action="/register">
-      <div class="kata">
-      <h2 >Register</h2>
-    <h2> <a href="{{ route('login') }}">Login </a></h2>
-    </div>
+   <div class="kata">
+    <a href="{{ route('register') }}" 
+       class="{{ request()->routeIs('register') ? 'aktif' : '' }}">
+       Register
+    </a>
+
+    <a href="{{ route('login') }}" 
+       class="{{ request()->routeIs('login') ? 'aktif' : '' }}">
+       Login
+    </a>
+</div>
     @csrf
     <div><label>Username:</label><input type="text" name="Username" required></div>
     <div><label>Nama:</label><input type="text" name="Nama" required></div>
@@ -78,5 +85,7 @@
 </form>
 
     <p>Sudah punya akun? <a href="{{ route('login') }}">Login di sini</a></p>
+    
+
 </body>
 </html>

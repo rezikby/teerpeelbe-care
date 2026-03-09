@@ -8,13 +8,7 @@
 <body>
   
   
-    @if ($errors->any())
-        <ul style="color:red;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+  
     
 <div class="container">
    
@@ -47,8 +41,14 @@ Kebutuhan Sehat</h1>
     <!-- FORM KANAN -->
     <div class="form-wrapper">
 
-        <form method="POST" action="/register">
-
+        <form action="/register" method="POST">
+          @if ($errors->any())
+        <ul style="color:red;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
             <div class="kata">
                 <a href="{{ route('register') }}" 
                    class="{{ request()->routeIs('register') ? 'aktif' : '' }}">
@@ -111,15 +111,30 @@ Kebutuhan Sehat</h1>
                     <option value="Papua Tengah">Papua Tengah</option>
                     <option value="Papua Pegunungan">Papua Pegunungan</option>
                     <option value="Papua Barat Daya">Papua Barat Daya</option>
-
+                
                 </select>
             </div>
+            <div>
+            <label>Alamat:</label>
+            <input type="text" name="Alamat" required>
+            </div>
+           <div><label>No Telpon:</label><input type="text" name="No_Telpon" required></div>
 
-            <div><label>Alamat:</label><input type="text" name="Alamat" required></div>
-            <div><label>No Telpon:</label><input type="text" name="No_Telpon" required></div>
-            <div><label>Password:</label><input type="password" name="Password" required></div>
-            <div><label>Konfirmasi Password:</label><input type="password" name="Password_confirmation" required></div>
+         
 
+        <div>
+           <label>Role:</label>
+           <select name="role" required>
+           <option value="">-- Pilih Role --</option>
+           <option value="admin">Admin</option>
+           <option value="users">Users</option>
+          </select>
+        </div>
+
+<div><label>Password:</label><input type="password" name="Password" required></div>
+
+<div><label>Konfirmasi Password:</label><input type="password" name="Password_confirmation" required></div>
+             
             <button type="submit">Register</button>
            <p>Sudah punya akun? <a href="{{ route('login') }}">Login di sini</a></p>
         </form>

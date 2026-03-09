@@ -8,10 +8,6 @@
 <body>
   
 
-    @if(session('error'))
-        <p style="color:red;">{{ session('error') }}</p>
-    @endif
-    
     <div class="container">
    
 
@@ -40,7 +36,13 @@ Kebutuhan Sehat</h1>
     </div>
 
 <div class="form-wrapper">
-    <form method="POST" action="/login">
+   <form action="/login" method="POST">
+
+    
+    @if(session('error'))
+        <p style="color:red;">{{ session('error') }}</p>
+    @endif
+    
        <div class="kata">
                 <a href="{{ route('register') }}" 
                    class="{{ request()->routeIs('register') ? 'aktif' : '' }}">

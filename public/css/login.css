@@ -1,4 +1,3 @@
-/* Atur font & body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -6,17 +5,17 @@ body {
     padding: 0;
 }
 
-/* layout kiri-kanan */
+
 .container{
     display:flex;
-    min-height:100vh; /* tinggi minimal full viewport */
+    min-height:100vh; 
 }
 
-/* HERO KIRI */
+
 .main{
     width:30%;
-    min-height:auto;       /* otomatis sesuai isi */
-    padding: 40px 70px;    /* jarak atas/bawah */
+    min-height:auto;      
+    padding: 40px 70px;   
     color:white;
     position: relative;
     gap: 10px;
@@ -89,13 +88,13 @@ body {
 }
 /* Form wrapper kanan */
 .form-wrapper{
-    width:50%;
+    width:47%;
     display:flex;
     flex-direction:column;
-    justify-content:center; /* mulai dari atas */
+    justify-content:center; 
     align-items:center;
-    padding-top: 10px;
     margin: auto;
+    padding-bottom: 210px;
     align-items: center;
 }
 
@@ -103,9 +102,8 @@ body {
 .form-wrapper form{
     width:70%;
     margin-bottom:0;
-    padding-top: 0px; /* cukup jarak dari judul form */
+    padding-top: 0px; 
 }
-
 /* Judul form */
 .kata{
     display:flex;
@@ -128,7 +126,7 @@ body {
     border-radius:10px;
 }
 
-
+/* Tab login/register */
 .kata a {
     flex: 1;
     text-align: center;
@@ -136,7 +134,7 @@ body {
     text-decoration: none;
     color: #333;
     font-weight: bold;
-    transition: background 8s, color 9s; 
+    transition: background 0.3s, color 0.3s; /* <-- tambahkan transisi */
 }
 
 /* Hover tab */
@@ -146,81 +144,118 @@ body {
 
 /* Tab aktif */
 .kata a.aktif {
-    background: #41339f; 
+    background: #41339f;  /* ungu */
     color: white;
 }
 
-/* tab aktif */
-.kata a.aktif{
-    background-color: rgb(65, 51, 159);
-    color:white;
+/* Form wrapper kanan */
+.form-wrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start; /* form naik ke atas */
+    align-items:center;
+    
+}
+
+/* Form card */
+.form-wrapper form{
+    width:70%;
+   justify-content:flex-start; 
+    align-items:center;
+    margin-top: 0;
+}
+
+/* Tab register/login */
+.kata{
+    display:flex;
+    width:100%;
+    margin-bottom:25px;
+    background:#f1f1f1;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.kata a{
     flex:1;
-    padding:12px 30px;
-    width: 50%;
+    text-align:center;
+    padding:12px 0;
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+    transition: 0.3s;
+}
+
+.kata a:hover{
+    background:#dcdcff;
+}
+
+.kata a.aktif{
+    background:#41339f; /* sesuai konsep */
+    color:white;
+}
+
+/* Judul form */
+form h3{
+    text-align:center;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
 }
 
 /* Label & input */
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
-    color: #000000;
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+    color:#000;
 }
 
-input, select {
-    width: 100%;
-    padding: 12px 18px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 9px;
-    box-sizing: border-box;
+input{
+    width:100%;
+    padding:12px 15px;
+    margin-top:5px;
+    border-radius:9px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+    font-size:16px;
 }
 
 /* Tombol submit */
-button {
-    width: 70%;
-    margin: 20px auto;
-    display: block;
-    padding: 10px;
-    background-color: rgb(75, 60, 171);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 13px;
-    cursor: pointer;
+button{
+    width:70%;
+    margin:20px auto;
+    display:block;
+    padding:12px;
+    background-color: #4b3cab;
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    border:none;
+    border-radius:13px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-button:hover {
-    background-color: rgb(95, 80, 193);
+button:hover{
+    background-color:#5f50c1;
 }
 
-/* Link login */
-p {
-    text-align: center;
-    margin-top: 15px;
+/* Link bawah form */
+.form-wrapper p{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
 }
 
-p a {
-    color: rgb(75, 60, 171);
-    text-decoration: none;
+.form-wrapper p a{
+    color:#4b3cab;
+    text-decoration:none;
 }
 
-p a:hover {
-    text-decoration: underline;
+.form-wrapper p a:hover{
+    text-decoration:underline;
 }
 
-/* Error list */
-ul {
-    list-style: none;
-    padding-left: 0;
-    margin-top: 10px;
-}
-
-ul li {
-    color: red;
-    margin-bottom: 5px;
-}
 
 /* responsive */
 @media screen and (max-width:768px){
@@ -246,3 +281,6 @@ ul li {
         gap:90px;
     }
 }
+
+
+

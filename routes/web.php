@@ -27,3 +27,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+Route::get('/', function () {
+    return view('index');
+});
+
+use App\Http\Controllers\User\BookingController;
+Route::post('/booking', [BookingController::class, 'store']);
+
+
+use App\Http\Controllers\User\KomunitasController;
+Route::post('/komunitas/post', [KomunitasController::class, 'store']);

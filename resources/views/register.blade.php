@@ -62,7 +62,11 @@ Kebutuhan Sehat</h1>
             </div>
 
             @csrf
+           <div class="pesan">
+  <h2>Buat Akun Baru </h2>
+  <p>Daftar gratis dan mulai perjalanan sehat bersama 50.000+ pengguna Tereplebe Care.</p>
 
+</div>
             <div><label>Username:</label><input type="text" name="Username" required></div>
             <div><label>Nama:</label><input type="text" name="Nama" required></div>
 

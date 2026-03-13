@@ -1,0 +1,4 @@
+<head>
+<title>Terplebe Care</title>
+<link rel="icon" href="{{ asset('image.logo.png') }}">
+</head>

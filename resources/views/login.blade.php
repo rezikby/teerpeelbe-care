@@ -57,6 +57,12 @@ Kebutuhan Sehat</h1>
 
 
         @csrf
+
+               <div class="pesan">
+  <h2>Selamat Datang 👋</h2>
+  <p>Masuk ke akun Tereplebe Care kamu dan lanjutkan perjalanan sehatmu.</p>
+
+</div>
         <div>
             <label>Username:</label>
             <input type="text" name="Username" required>

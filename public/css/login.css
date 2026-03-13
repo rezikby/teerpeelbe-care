@@ -256,7 +256,18 @@ button:hover{
     text-decoration:underline;
 }
 
+.pesan {
+  text-align: left;     
+}
+.pesan h2 {
+  margin-bottom: 8px;
+}
 
+.pesan p {
+  opacity: 0.6; 
+  text-align: left;   
+  margin-bottom: 30px;
+}
 /* responsive */
 @media screen and (max-width:768px){
     .container{

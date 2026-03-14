@@ -8,7 +8,7 @@
 TERPLEBE <span>CARE</span>
 </div>
 
-<ul class="menu">
+<ul class="menu" id="menu">
 <li><a href="/">Beranda</a></li>
 <li><a href="/ai">Ai</a></li>
 <li><a href="/komunitas">Komunitas</a></li>
@@ -19,6 +19,11 @@ TERPLEBE <span>CARE</span>
 <div class="auth">
 <a href="/login" class="login">Masuk</a>
 <a href="/register" class="register">Register</a>
+</div>
+
+<!-- Hamburger -->
+<div class="hamburger" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
 </div>
 
 </nav>
@@ -122,7 +127,9 @@ TERPLEBE <span>CARE</span>
 <section class="features">
 
   <div class="feature-item">
-    <div class="feature-icon green">✔</div>
+    <div class="feature-icon green">
+      <i class="fas fa-check-square"></i>
+    </div>
     <h3 class="feature-title">Dokter Terverifikasi</h3>
     <p class="feature-desc">
       Semua dokter bersertifikat dan melalui proses verifikasi ketat sebelum bergabung.
@@ -130,7 +137,9 @@ TERPLEBE <span>CARE</span>
   </div>
 
   <div class="feature-item">
-    <div class="feature-icon blue">🕒</div>
+    <div class="feature-icon blue">
+      <i class="fas fa-clock"></i>
+    </div>
     <h3 class="feature-title">Tersedia 24/7</h3>
     <p class="feature-desc">
       Layanan kesehatan round-the-clock — kapanpun dan dimanapun kamu butuh bantuan.
@@ -138,7 +147,9 @@ TERPLEBE <span>CARE</span>
   </div>
 
   <div class="feature-item">
-    <div class="feature-icon yellow">🔒</div>
+    <div class="feature-icon yellow">
+      <i class="fas fa-lock"></i>
+    </div>
     <h3 class="feature-title">Data Aman & Privat</h3>
     <p class="feature-desc">
       Enkripsi end-to-end dan perlindungan data standar HIPAA untuk ketenangan pikiranmu.
@@ -146,3 +157,8 @@ TERPLEBE <span>CARE</span>
   </div>
 
 </section>
+<script>
+function toggleMenu(){
+document.querySelector(".menu").classList.toggle("active");
+}
+</script>

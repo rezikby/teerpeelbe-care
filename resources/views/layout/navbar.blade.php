@@ -104,3 +104,45 @@ TERPLEBE <span>CARE</span>
 
   </div>
 </section>
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-number">2.4k+</div>
+    <div class="stat-label">Dokter Terverifikasi</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">98%</div>
+    <div class="stat-label">Pasien Puas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">24/7</div>
+    <div class="stat-label">Layanan aktif</div>
+  </div>
+</div>
+
+<section class="features">
+
+  <div class="feature-item">
+    <div class="feature-icon green">✔</div>
+    <h3 class="feature-title">Dokter Terverifikasi</h3>
+    <p class="feature-desc">
+      Semua dokter bersertifikat dan melalui proses verifikasi ketat sebelum bergabung.
+    </p>
+  </div>
+
+  <div class="feature-item">
+    <div class="feature-icon blue">🕒</div>
+    <h3 class="feature-title">Tersedia 24/7</h3>
+    <p class="feature-desc">
+      Layanan kesehatan round-the-clock — kapanpun dan dimanapun kamu butuh bantuan.
+    </p>
+  </div>
+
+  <div class="feature-item">
+    <div class="feature-icon yellow">🔒</div>
+    <h3 class="feature-title">Data Aman & Privat</h3>
+    <p class="feature-desc">
+      Enkripsi end-to-end dan perlindungan data standar HIPAA untuk ketenangan pikiranmu.
+    </p>
+  </div>
+
+</section>

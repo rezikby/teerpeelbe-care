@@ -457,7 +457,87 @@ body{
       font-weight: 800;
       color: #16A34A;
     }
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 32px 0;
+  margin-left: 50px;
+}
 
+.stat-number {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #3B5BDB;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #444;
+}
+
+
+.features {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  padding: 60px 80px;
+  background: #f5f6fc;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 36px;
+  box-shadow: 0 6px 25px rgba(60,60,120,0.08);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.feature-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.feature-icon.green {
+  background: #dcfce7;
+  color: #16A34A;
+}
+
+.feature-icon.blue {
+  background: #1a1464;
+  color: #ffffff;
+}
+
+.feature-icon.yellow {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1464;
+  margin-bottom: 12px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.7;
+}
     .card-respons .speed i { color: #FACC15; font-size: 1rem; }
 /* Responsif: untuk layar kecil */
 @media (max-width: 768px) {

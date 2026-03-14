@@ -3,91 +3,70 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\User;
+use App\Http\Requests\Auth\RegisterRequest;
 
 class AuthController extends Controller
 {
+
+    // tampilkan halaman register
+    public function showRegister()
+    {
+        return view('register');
+    }
+
+    // tampilkan halaman login
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    // proses register
     public function register(RegisterRequest $request)
     {
-        try {
+        $data = $request->validated();
 
-            $user = User::create([
-                'Username'  => $request->Username,
-                'Nama'      => $request->Nama,
-                'Asal'      => $request->Asal,
-                'Alamat'    => $request->Alamat,
-                'No_Telpon' => $request->No_Telpon,
-                'Password'  => Hash::make($request->Password),
-                'role'      => $request->role
-            ]);
+        User::create([
+            'Username'  => $data['Username'],
+            'Nama'      => $data['Nama'],
+            'Asal'      => $data['Asal'],
+            'Alamat'    => $data['Alamat'],
+            'No_Telpon' => $data['No_Telpon'],
+            'role'      => $data['role'],
+            'Password'  => Hash::make($data['Password']),
+        ]);
 
-            // response berhasail
-            return response()->json([
-                'status'  => true,
-                'code'    => 201,
-                'message' => 'Registrasi berhasil',
-                // 'data'    => [
-                //     'Username'  => $user->Username,
-                //     'Nama'      => $user->Nama,
-                //     'Asal'      => $user->Asal,
-                //     'Alamat'    => $user->Alamat,
-                //     "role"      => $user->role,
-                //     'dibuat_pada' => $user->created_at
-                // ]
-            ], 201);
-        } catch (\Exception $e) {
-
-            // response eror
-            return response()->json([
-                'status'  => false,
-                'code'    => 500,
-                'message' => 'Terjadi kesalahan pada server,Apakah kamu sdua regiter?',
-            ], 500);
-        }
+        return redirect('/login')->with('success','Registrasi berhasil');
     }
 
-    public function login(LoginRequest $request)
+    // proses login
+    public function login(Request $request)
     {
-        try {
+        $request->validate([
+            'Username' => 'required|string',
+            'Password' => 'required|string'
+        ]);
 
-            $user = User::where('Username', $request->Username)->first();
+        $user = User::where('Username',$request->Username)->first();
 
-            if (!$user) {
-                return response()->json([
-                    'status' => false,
-                    'code' => 401,
-                    'message' => 'Username tidak ditemukan'
-                ], 401);
-            }
+        if($user && Hash::check($request->Password,$user->Password)){
+            Auth::login($user);
+            $request->session()->regenerate();
 
-            if (!Hash::check($request->Password, $user->Password)) {
-                return response()->json([
-                    'status' => false,
-                    'code' => 401,
-                    'message' => 'Password salah'
-                ], 401);
-            }
-
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return response()->json([
-                'status' => true,
-                'code' => 200,
-                'message' => 'Login berhasil',
-                'token_type' => 'Bearer',
-                'token' => $token
-            ], 200);
-        } catch (\Exception $e) {
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Server error',
-                'error' => $e->getMessage()
-            ], 500);
+            return redirect('/home');
         }
+
+        return back()->with('error','Username atau Password salah');
     }
+
+    // logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
 }

@@ -1,0 +1,297 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    display:flex;
+    min-height:100vh; 
+}
+
+
+.main{
+    width:30%;
+    min-height:auto;      
+    padding: 40px 70px;   
+    color:white;
+    position: relative;
+    gap: 10px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start; /* naik ke atas */
+    background: linear-gradient(135deg,#4c2bbd,#1f4ed8);
+}
+
+.main h1 {
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;           
+    align-items: center;     
+    gap: 10px;  
+    margin: 0;
+}
+
+.main h1 i {
+    color:rgb(255, 255, 255);       
+    font-size: 32px;         
+}
+
+.main span{
+    color:#b8b6ff;
+}
+
+/* badge kesehatan */
+.kes{
+    margin-top:10px;
+}
+
+.kes p{
+    display:inline-block;
+    padding:8px 18px;
+    margin-top: 0;
+    gap: 0;
+    border-radius:20px;
+    font-size:14px;
+    background:rgba(255,255,255,0.15);
+}
+
+.judul h1,
+.main span,
+.texs p {
+    width: 70%;        
+    margin: 0;         
+    padding: 0;       
+    text-align: left;   
+}
+
+.judul h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px; 
+}
+
+.main span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 10px; 
+    color: #b8b6ff;
+}
+
+.texs p {
+    padding: 0;        
+    line-height: 1.6;
+    text-align: left;
+}
+/* Form wrapper kanan */
+.form-wrapper{
+    width:47%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center; 
+    align-items:center;
+    margin: auto;
+    padding-bottom: 210px;
+    align-items: center;
+}
+
+/* Form */
+.form-wrapper form{
+    width:70%;
+    margin-bottom:0;
+    padding-top: 0px; 
+}
+/* Judul form */
+.kata{
+    display:flex;
+    width: 90%;
+    margin:auto;
+    background:#f8f7fa;
+    font-weight: bold;
+    border-radius:14px;
+    box-shadow: 1px 1px 7px 1px rgb(203, 198, 198);
+    padding:8px 10px;
+    margin-top: 12px;
+}
+
+.kata a{
+    flex:1;
+    text-align:center;
+    padding:10px;
+    text-decoration:none;
+    color:black;
+    border-radius:10px;
+}
+
+/* Tab login/register */
+.kata a {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background 0.3s, color 0.3s; /* <-- tambahkan transisi */
+}
+
+/* Hover tab */
+.kata a:hover {
+    background: #dcdcff;
+}
+
+/* Tab aktif */
+.kata a.aktif {
+    background: #41339f;  /* ungu */
+    color: white;
+}
+
+/* Form wrapper kanan */
+.form-wrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start; /* form naik ke atas */
+    align-items:center;
+    
+}
+
+/* Form card */
+.form-wrapper form{
+    width:70%;
+   justify-content:flex-start; 
+    align-items:center;
+    margin-top: 0;
+}
+
+/* Tab register/login */
+.kata{
+    display:flex;
+    width:100%;
+    margin-bottom:25px;
+    background:#f1f1f1;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.kata a{
+    flex:1;
+    text-align:center;
+    padding:12px 0;
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+    transition: 0.3s;
+}
+
+.kata a:hover{
+    background:#dcdcff;
+}
+
+.kata a.aktif{
+    background:#41339f; /* sesuai konsep */
+    color:white;
+}
+
+/* Judul form */
+form h3{
+    text-align:center;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* Label & input */
+label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+    color:#000;
+}
+
+input{
+    width:100%;
+    padding:12px 15px;
+    margin-top:5px;
+    border-radius:9px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+    font-size:16px;
+}
+
+/* Tombol submit */
+button{
+    width:70%;
+    margin:20px auto;
+    display:block;
+    padding:12px;
+    background-color: #4b3cab;
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    border:none;
+    border-radius:13px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background-color:#5f50c1;
+}
+
+/* Link bawah form */
+.form-wrapper p{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+
+.form-wrapper p a{
+    color:#4b3cab;
+    text-decoration:none;
+}
+
+.form-wrapper p a:hover{
+    text-decoration:underline;
+}
+
+.pesan {
+  text-align: left;     
+}
+.pesan h2 {
+  margin-bottom: 8px;
+}
+
+.pesan p {
+  opacity: 0.6; 
+  text-align: left;   
+  margin-bottom: 30px;
+}
+/* responsive */
+@media screen and (max-width:768px){
+    .container{
+        flex-direction:column;
+    }
+
+    .main{
+        width:100%;
+        height:auto;
+    }
+
+    .form-wrapper{
+        width:100%;
+    }
+
+    form{
+        width:380px;
+    }
+
+    .kata{
+        width:350px;
+        gap:90px;
+    }
+}
+
+
+

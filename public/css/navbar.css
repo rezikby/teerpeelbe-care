@@ -370,7 +370,7 @@ body{
   position: absolute;
   top: 300px;
   animation: floatCard 4s ease-in-out infinite;
-  left: 60px;
+  left: 205px;
   background: linear-gradient(135deg, #4338CA 0%, #7C3AED 100%);
   border-radius: 18px;
   padding: 12px 18px; 
@@ -417,7 +417,7 @@ body{
     .card-respons {
   position: absolute;
   top: 370px;
-  left: 90px;
+  left: 230px;
   background: #ffffff;
   border-radius: 18px;
   padding: 7px 12px; 

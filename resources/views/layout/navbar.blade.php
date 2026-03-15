@@ -2,30 +2,29 @@
 <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 
 <nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-hospital-user"></i>
+        TERPLEBE <span>CARE</span>
+    </div>
 
-<div class="logo">
-<i class="fas fa-hospital-user"></i>
-TERPLEBE <span>CARE</span>
-</div>
+    <div class="nav-wrapper" id="menu">
+        <ul class="menu-links">
+            <li><a href="/">Beranda</a></li>
+            <li><a href="/ai">Ai</a></li>
+            <li><a href="/komunitas">Komunitas</a></li>
+            <li><a href="/artikel">Artikel</a></li>
+            <li><a href="/darurat">Darurat</a></li>
+        </ul>
 
-<ul class="menu" id="menu">
-<li><a href="/">Beranda</a></li>
-<li><a href="/ai">Ai</a></li>
-<li><a href="/komunitas">Komunitas</a></li>
-<li><a href="/artikel">Artikel</a></li>
-<li><a href="/darurat">Darurat</a></li>
-</ul>
+        <div class="auth">
+            <a href="/login" class="login">Masuk</a>
+            <a href="/register" class="register">Register</a>
+        </div>
+    </div>
 
-<div class="auth">
-<a href="/login" class="login">Masuk</a>
-<a href="/register" class="register">Register</a>
-</div>
-
-<!-- Hamburger -->
-<div class="hamburger" onclick="toggleMenu()">
-<i class="fas fa-bars"></i>
-</div>
-
+    <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
 </nav>
 <section class="hero">
 
@@ -159,6 +158,7 @@ TERPLEBE <span>CARE</span>
 </section>
 <script>
 function toggleMenu(){
-document.querySelector(".menu").classList.toggle("active");
+    const navWrapper = document.getElementById("menu");
+    navWrapper.classList.toggle("active");
 }
 </script>

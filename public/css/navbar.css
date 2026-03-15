@@ -8,6 +8,7 @@
 body{
     color: antiquewhite;
 }
+/* ===== NAVBAR SECTION ===== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -19,49 +20,52 @@ body{
     z-index: 1000;
     background: rgba(255, 255, 255, 0.3); 
     backdrop-filter: blur(10px); 
-    
     font-family: 'Arial', sans-serif;
 }
 
 .navbar .logo {
-    font-size: 1.8rem;
     font-weight: bold;
     display: flex;
     font-size: 18px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
     align-items: center;
-  
 }
 
 .navbar .logo i {
     margin-right: 10px;
-    color:  rgb(28, 62, 162);
+    color: rgb(28, 62, 162);
 }
 
 .navbar .logo span {
-     color: rgb(21, 28, 133);
+    color: rgb(21, 28, 133);
 }
 
-.navbar .menu {
+/* Container untuk Menu & Auth biar bisa di-toggle bareng di mobile */
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Kotak Putih Lonjong (Hanya untuk Link) */
+.navbar .menu-links {
     display: flex;
     list-style: none;
+    margin: auto;
+    left: 67px;
     background-color: rgb(255, 255, 255);
-    padding: 6px 0;
+    padding: 6px 15px;
     border-radius: 15px;
     align-items: center;
-     box-shadow: 1px 1px 2px 1px;
-     margin: auto;
-     padding-right: 30px;
-    
+    margin-right: 250px;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
 }
 
-.navbar .menu li {
-    margin-left: 25px;
-    
+.navbar .menu-links li {
+    margin: 0 12px;
 }
 
-.navbar .menu li a {
+.navbar .menu-links li a {
     text-decoration: none;
     color: #141313;
     font-weight: 500;
@@ -70,10 +74,11 @@ body{
     transition: color 0.3s;
 }
 
-.navbar .menu li a:hover {
+.navbar .menu-links li a:hover {
     color: #f5c242;
 }
 
+/* Bagian Tombol Auth (DI LUAR kotak putih saat desktop) */
 .navbar .auth {
     display: flex;
     gap: 15px;
@@ -83,15 +88,14 @@ body{
     padding: 8px 18px;
     border-radius: 6px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
+    font-size: 14px;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar .auth .login {
     color: #0f0f10;
-    font-style: inherit;
     background-color: #fff;
-    font-weight: bold;
 }
 
 .navbar .auth .login:hover {
@@ -104,9 +108,15 @@ body{
 }
 
 .navbar .auth .register:hover {
-     background-color: #7959e3;
+    opacity: 0.9;
 }
 
+.hamburger {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #1a1464;
+}
 .hero {
       display: flex;
       align-items: flex-start;
@@ -562,49 +572,66 @@ body{
     .card-respons .speed i { color: #FACC15; font-size: 1rem; }
 /* Responsif: untuk layar kecil */
 @media (max-width: 768px) {
-   .navbar{
-    padding:15px 20px;
-}
+ .navbar {
+        padding: 15px 20px;
+    }
 
-/* jika aktif */
-.navbar .menu.active{
-    display:flex;
-}
+    .hamburger {
+        display: block;
+    }
 
-/* sembunyikan menu */
-.navbar .menu{
-    display:none;
-    flex-direction:column;
-    width:100%;
-    background:white;
-    position:absolute;
-    top:70px;
-    left:0;
-    align-items: flex-start;
-    padding:20px 0;
-}
+   
+    .nav-wrapper {
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 20px; 
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 999;
+        gap: 25px;
+        align-items: flex-start; 
+    }
 
+    .nav-wrapper.active {
+        display: flex;
+    }
 
+    /* List Link Menu */
+    .navbar .menu-links {
+        flex-direction: column;
+        background: none;
+        box-shadow: none;
+        width: 100%;
+        padding: 0;
+        align-items: flex-start; 
+    }
 
-.navbar .menu li{
-    margin:12px 20px;
-}
+    .navbar .menu-links li {
+        margin: 10px 0;
+    }
 
-.navbar .menu li a{
-    display:block;
-    text-align:left;
-    margin-right: 500px;
-}
+    .navbar .menu-links li a {
+        font-size: 16px;
+        text-align: left;
+    }
 
-/* sembunyikan auth */
-.navbar .auth{
-    display:none;
-}
-
-/* tampilkan hamburger */
-.hamburger{
-    display:block;
-}
+   .navbar .auth {
+        display: flex;       
+        flex-direction: row; 
+        width: 100%;         
+        justify-content: flex-start; 
+        gap: 10px;           
+        margin-top: 10px;  
+   }
+    .navbar .auth a {
+        width: auto;        
+        padding: 8px 15px;   
+        font-size: 14px;
+    }
 
 .hero { 
 flex-direction: column; 
@@ -619,6 +646,65 @@ max-width: 100%;
 min-height: 440px; 
 width: 100%; 
 }
+
+.hero{
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-left{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.hero-title{
+  text-align:center;
+  font-size: 55px;
+}
+
+.hero-desc{
+  text-align:center;
+  max-width:500px;
+}
+
+.search-bar{
+  width:100%;
+  max-width:400px;
+  justify-content:center;
+}
+
+.quick-actions{
+  justify-content:center;
+}
+
+.quick-btn{
+  text-align:center;
+}
+
+.card-ai{
+  left: 76px;
+}
+.stats{
+   
+  justify-content:center;
+  text-align:center;
+  gap:10px;
+  width:100%;
+  right: 45px;
+  margin: 0 auto;
+}
+
+.stat-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+}
+
+
 }
 
 @keyframes floatCard {

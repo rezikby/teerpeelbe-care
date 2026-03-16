@@ -2,38 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\KomunitasController;
 
+// halaman utama
+Route::get('/', function () {
+    return view('index');
+});
 
+// AUTH
 Route::get('/register',[AuthController::class,'showRegister'])->name('register');
 Route::post('/register',[AuthController::class,'register']);
 
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
 
-// Logout
-Route::post('/logout', [AuthController::class,'logout'])->name('logout');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
-// Dashboard (harus login)
-Route::get('/dashboard', function () {
-    return 'Selamat datang di dashboard';
-})->middleware('auth');
+// halaman yang butuh login
+Route::middleware('auth')->group(function () {
 
-Route::get('/home', function () {
-    return view('home'); // ini akan memanggil resources/views/home.blade.php
-})->middleware('auth')->name('home');
+    Route::get('/dashboard', function () {
+        return 'Selamat datang di dashboard';
+    });
 
-// Optional root
-Route::get('/', function () {
-    return redirect('/login');
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
+
 });
 
-Route::get('/', function () {
-    return view('index');
-});
-
-use App\Http\Controllers\User\BookingController;
-Route::post('/booking', [BookingController::class, 'store']);
-
-
-use App\Http\Controllers\User\KomunitasController;
-Route::post('/komunitas/post', [KomunitasController::class, 'store']);
+// fitur user
+Route::post('/booking',[BookingController::class,'store']);
+Route::post('/komunitas/post',[KomunitasController::class,'store']);

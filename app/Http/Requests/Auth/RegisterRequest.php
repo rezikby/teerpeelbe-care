@@ -3,22 +3,14 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RegisterRequest extends FormRequest
 {
-    /**
-     * Authorization
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Validation Rules
-     */
     public function rules(): array
     {
         return [
@@ -32,9 +24,6 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    /**
-     * Custom Error Messages
-     */
     public function messages(): array
     {
         return [
@@ -50,20 +39,5 @@ class RegisterRequest extends FormRequest
             'Password.min'      => 'Password minimal 6 karakter.',
             'Password.confirmed'=> 'Konfirmasi password tidak cocok.'
         ];
-    }
-
-    /**
-     * Custom Response if Validation Fails
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'status'  => false,
-                'code'    => 422,
-                'message' => 'Validasi gagal',
-                'errors'  => $validator->errors()
-            ], 422)
-        );
     }
 }

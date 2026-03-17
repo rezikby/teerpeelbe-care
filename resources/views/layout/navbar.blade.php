@@ -154,11 +154,99 @@
       Enkripsi end-to-end dan perlindungan data standar HIPAA untuk ketenangan pikiranmu.
     </p>
   </div>
-
 </section>
+
+<section class="services">
+  <h1>Layanan Khusus untuk <span>Penyandang Disabilitas</span></h1>
+  <p>
+    Kami percaya kesehatan adalah hak semua orang. Platform kami dirancang
+    inklusif untuk semua kondisi.
+  </p>
+
+  <div class="card-container">
+
+    <div class="card">
+      <div class="icon">
+        <i class="fa-solid fa-wheelchair"></i>
+      </div>
+      <h3>Mobilitas Terbatas</h3>
+      <p>Konsultasi dari rumah, navigasi RS ramah kursi roda, dan antar-jemput medis bersubsidi.</p>
+      <button>Tersedia</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <i class="fa-solid fa-ear-listen"></i>
+      </div>
+      <h3>Tunarungu / Tuli</h3>
+      <p>Konsultasi via teks & video dengan interpreter bahasa isyarat (BISINDO) terlatih.</p>
+      <button>Tersedia</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <i class="fa-solid fa-eye"></i>
+      </div>
+      <h3>Tunanetra / Low Vision</h3>
+      <p>Antarmuka screen reader-friendly, audio guidance, dan notifikasi suara untuk semua fitur.</p>
+      <button>Tersedia</button>
+    </div>
+
+    <div class="card">
+      <div class="icon">
+        <i class="fa-solid fa-comment-dots"></i>
+      </div>
+      <h3>Gangguan Bicara</h3>
+      <p>Komunikasi berbasis teks dan papan komunikasi AAC untuk konsultasi yang nyaman.</p>
+      <button>Tersedia</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Floating Accessibility -->
+<div class="accessibility">
+
+  <button class="btn-plus"><i class="fa-solid fa-plus"></i></button>
+  <button class="btn-minus"><i class="fa-solid fa-minus"></i></button>
+  <button class="btn-dark"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  <button><i class="fa-solid fa-wheelchair"></i></button>
+
+  <button class="sos">SOS</button>
+
+</div>
 <script>
 function toggleMenu(){
     const navWrapper = document.getElementById("menu");
     navWrapper.classList.toggle("active");
+
+    
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  let zoomLevel = 1;
+
+  const btnPlus = document.querySelector(".btn-plus");
+  const btnMinus = document.querySelector(".btn-minus");
+  const btnDark = document.querySelector(".btn-dark");
+
+  // 🔥 ZOOM IN (bukan cuma teks)
+  btnPlus.addEventListener("click", () => {
+    zoomLevel += 0.1;
+    document.body.style.zoom = zoomLevel;
+  });
+
+  // 🔥 ZOOM OUT
+  btnMinus.addEventListener("click", () => {
+    zoomLevel -= 0.1;
+    document.body.style.zoom = zoomLevel;
+  });
+
+  // DARK MODE
+  btnDark.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+
+});
 </script>

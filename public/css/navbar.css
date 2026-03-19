@@ -58,7 +58,7 @@ body{
     padding: 6px 15px;
     border-radius: 15px;
     align-items: center;
-    margin-right: 250px;
+    margin-right: 210px;
     box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.1);
 }
 
@@ -745,6 +745,42 @@ body{
 /* SOS tetap merah */
 .dark-mode .sos {
   background: #e11d48 !important;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: rgb(227, 227, 227);
+  margin: 10% auto;
+  padding: 20px;
+  width: 400px;
+  border-radius: 12px;
+  position: relative;
+  height: 40vh;
+  animation: fadeIn 0.3s ease;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
     .card-respons .speed i { color: #FACC15; font-size: 1rem; }
 /* Responsif: untuk layar kecil */

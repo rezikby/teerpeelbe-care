@@ -13,6 +13,7 @@
             <li><a href="/ai">Ai</a></li>
             <li><a href="/komunitas">Komunitas</a></li>
             <li><a href="/artikel">Artikel</a></li>
+            <li><a href="/artikel">Booking Rs</a></li>
             <li><a href="/darurat">Darurat</a></li>
         </ul>
 
@@ -157,6 +158,13 @@
 </section>
 
 <section class="services">
+  <!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
   <h1>Layanan Khusus untuk <span>Penyandang Disabilitas</span></h1>
   <p>
     Kami percaya kesehatan adalah hak semua orang. Platform kami dirancang
@@ -164,8 +172,9 @@
   </p>
 
   <div class="card-container">
+    <div id="content" style="margin-top:20px;"></div>
 
-    <div class="card">
+    <div class="card" onclick="show('mobilitas')">
       <div class="icon">
         <i class="fa-solid fa-wheelchair"></i>
       </div>
@@ -174,7 +183,7 @@
       <button>Tersedia</button>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="show('tuli')">
       <div class="icon">
         <i class="fa-solid fa-ear-listen"></i>
       </div>
@@ -183,7 +192,7 @@
       <button>Tersedia</button>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="show('netra')">
       <div class="icon">
         <i class="fa-solid fa-eye"></i>
       </div>
@@ -192,7 +201,7 @@
       <button>Tersedia</button>
     </div>
 
-    <div class="card">
+      <div class="card" onclick="show('bicara')">
       <div class="icon">
         <i class="fa-solid fa-comment-dots"></i>
       </div>
@@ -204,7 +213,7 @@
   </div>
 </section>
 
-<!-- Floating Accessibility -->
+<!-- Accessibility -->
 <div class="accessibility">
 
   <button class="btn-plus"><i class="fa-solid fa-plus"></i></button>
@@ -249,4 +258,83 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+
+
+function show(type) {
+    let content = "";
+
+    if (type === "mobilitas") {
+        content = `
+            <h2 style="color:#1e1e1e; font-weight:bold; text-align:center; background:none;">
+           Konsultasi dari Rumah
+          </h2>
+            <button onclick="alert('Ke halaman booking')">Booking RS</button>
+            <button onclick="alert('Konsultasi online')">Konsultasi Online</button>
+        `;
+    }
+
+    if (type === "tuli") {
+        content = `
+            <h2 style="color:#1e1e1e; font-weight:bold; >Chat Dokter</h2>
+            <div style="height:100px; background:#eee; padding:10px;">
+                <b>Dokter:</b> Halo, ada keluhan?
+            </div>
+            <input placeholder="Ketik pesan..." />
+            <button>Kirim</button>
+        `;
+    }
+
+    if (type === "netra") {
+        content = `
+            <div style="background:white;color:black;padding:15px;border-radius:10px;">
+                <h2>Mode Tunanetra</h2>
+                <button onclick="speak()">🔊 Bacakan</button>
+                <button onclick="zoom()">A+ Perbesar</button>
+            </div>
+        `;
+    }
+
+    if (type === "bicara") {
+        content = `
+           <h2 style="color:black; text-align:center;">Text ke Suara</h2>
+            <input id="textInput" placeholder="Ketik..." />
+            <button onclick="speakText()">🔊 Ucapkan</button>
+        `;
+    }
+
+    document.getElementById("modal-body").innerHTML = content;
+    document.getElementById("modal").style.display = "block";
+}
+
+// TEXT TO SPEECH
+function speak() {
+    let msg = new SpeechSynthesisUtterance("Selamat datang di layanan kesehatan");
+    speechSynthesis.speak(msg);
+}
+
+function speakText() {
+    let text = document.getElementById("textInput").value;
+    let msg = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(msg);
+}
+
+// ZOOM TEXT
+function zoom() {
+    document.body.style.fontSize = "20px";
+}
+
+window.onclick = function(event) {
+  let modal = document.getElementById("modal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function closeModal() {
+    let modal = document.getElementById("modal");
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
 </script>

@@ -288,7 +288,8 @@ function show(type) {
     if (type === "netra") {
         content = `
             <div style="background:white;color:black;padding:15px;border-radius:10px;">
-                <h2>Mode Tunanetra</h2>
+                <h2 style="color:black; text-align:center;">Mode Tunanetra</h2>
+                <p>Blockt texs yg ingin di bacakan Contoh: "Layanan Khusus untuk Penyandang Disabilitas"</p>
                 <button onclick="speak()">🔊 Bacakan</button>
                 <button onclick="zoom()">A+ Perbesar</button>
             </div>
@@ -297,9 +298,9 @@ function show(type) {
 
     if (type === "bicara") {
         content = `
-           <h2 style="color:black; text-align:center;">Text ke Suara</h2>
+            <h2 style="color:#1e1e1e; font-weight:bold;">Chat Dokter</h2>
             <input id="textInput" placeholder="Ketik..." />
-            <button onclick="speakText()">🔊 Ucapkan</button>
+            <button onclick="kirimDanBaca()">Kirim</button>
         `;
     }
 
@@ -336,5 +337,36 @@ function closeModal() {
     if (modal) {
         modal.style.display = "none";
     }
+}
+
+document.addEventListener("mouseup", function () {
+    let selectedText = window.getSelection().toString().trim();
+
+    if (selectedText.length > 0) {
+        speechSynthesis.cancel(); // stop suara sebelumnya
+
+        let msg = new SpeechSynthesisUtterance(selectedText);
+        msg.lang = "id-ID";
+
+        speechSynthesis.speak(msg);
+    }
+});
+function kirimDanBaca() {
+    let text = document.getElementById("textInput").value;
+
+    fetch('/chat-dokter', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({
+            pesan: text
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert("Pesan terkirim");
+    });
 }
 </script>

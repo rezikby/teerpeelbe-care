@@ -23,7 +23,7 @@ Route::get('/home', function () {
 })->middleware('auth')->name('home');
 
 // Optional root
-Route::get('/', function () {
+Route::get('/login', function () {
     return redirect('/login');
 });
 
@@ -31,6 +31,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/ai-diagnosis', function () {
+    return view('ai');
+});
 use App\Http\Controllers\User\BookingController;
 Route::post('/booking', [BookingController::class, 'store']);
 

@@ -10,7 +10,7 @@
     <div class="nav-wrapper" id="menu">
         <ul class="menu-links">
             <li><a href="/">Beranda</a></li>
-            <li><a href="/ai">Ai</a></li>
+            <li><a href="/ai-diagnosis">Ai Diagnosis</a></li>
             <li><a href="/komunitas">Komunitas</a></li>
             <li><a href="/artikel">Artikel</a></li>
             <li><a href="/darurat">Darurat</a></li>

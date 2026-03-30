@@ -11,7 +11,7 @@
 .ai-container {
   max-width: 980px;
   width: 100%;
-  margin: 40px auto;
+  margin: 90px auto;
 }
 
 .ai-wrapper {
@@ -22,7 +22,7 @@
   .ai-container h1,
 .ai-container .judul-utama {
   text-align: center;
-  font-size: 52px;
+  font-size: 40px;
   color: #243b9f;
   margin-bottom: 10px;
   font-weight: 800;
@@ -226,11 +226,10 @@
     </p>
 
     <div class="chat-box" id="chatBox">
-      <div class="pesan ai">
-        AI Assistant
-        Hello! I'm your AI Health Assistant. Please describe your symptoms,
-        and I'll help you understand what might be causing them.
-      </div>
+    <div class="pesan ai">
+  Asisten AI
+  Halo! Saya asisten kesehatan Anda. Silakan jelaskan gejala yang Anda rasakan, dan saya akan membantu memberikan informasi awal.
+</div>
     </div>
 
     <div class="medical-disclaimer">
@@ -244,7 +243,7 @@
 
     <div class="chat-input">
       <input id="userInput" placeholder="Tulis..." />
-      <button onclick="kirimPesan()">Kirim</button>
+      <button id="btnKirim">Kirim</button>
     </div>
 
   </div>

@@ -376,3 +376,5 @@ function kirimDanBaca() {
     });
 }
 </script>
+
+<script src="/js/ai.js"></script>

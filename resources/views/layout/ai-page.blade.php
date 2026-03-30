@@ -1,41 +1,51 @@
-<!DOCTYPE html>
-<html lang="id">
 
-<head>
-  <meta charset="UTF-8">
-  <title>AI Cek Gejala</title>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #edf2f7;
-      margin: 0;
-      padding: 0;
-    }
+  font-family: Arial, sans-serif;
+  background: #edf2f7;
+  margin: 0;
+  padding: 0;
+}
 
-    .ai-container {
-      max-width: 980px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+.ai-container {
+  max-width: 980px;
+  width: 100%;
+  margin: 40px auto;
+}
 
-    /* JIKA ADA JUDUL DI ATAS */
-    h1,
-    .judul-utama {
-      text-align: center;
-      font-size: 52px;
-      color: #243b9f;
-      margin-bottom: 10px;
-      font-weight: 800;
-    }
+.ai-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+  .ai-container h1,
+.ai-container .judul-utama {
+  text-align: center;
+  font-size: 52px;
+  color: #243b9f;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
 
-    p,
-    .subjudul {
-      text-align: center;
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-    }
+.ai-container p,
+.ai-container .subjudul {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.ai-container input {
+  flex: 1;
+  padding: 16px 18px;
+  border-radius: 18px;
+}
+
+.ai-container button {
+  padding: 15px 26px;
+  border-radius: 18px;
+}
 
     /* BOX CHAT UTAMA */
     .chat-box {
@@ -206,31 +216,31 @@
     }
   </style>
 
-</head>
+<div class="ai-wrapper">
+  <div class="ai-container" id="ai-section">
 
-<body>
-
-  <div class="ai-container">
-
-    <H1 id="judul">Pemeriksa Gejala Bertenaga AI</H1>
-    <p>Dapatkan wawasan instan tentang gejala Anda dengan asisten AI canggih kami.
-      Tersedia 24/7 untuk membantu mengarahkan Anda menuju perawatan yang tepat.</p>
+    <h1 id="judul">Pemeriksa Gejala Bertenaga AI</h1>
+    <p>
+      Dapatkan wawasan instan tentang gejala Anda dengan asisten AI canggih kami.
+      Tersedia 24/7 untuk membantu mengarahkan Anda menuju perawatan yang tepat.
+    </p>
 
     <div class="chat-box" id="chatBox">
-      <div class="pesan ai">AI Assistant
+      <div class="pesan ai">
+        AI Assistant
         Hello! I'm your AI Health Assistant. Please describe your symptoms,
-        and I'll help you understand what might be causing them.</div>
+        and I'll help you understand what might be causing them.
+      </div>
     </div>
+
     <div class="medical-disclaimer">
       <span class="icon-warning">⚠</span>
       <div>
         <strong>Disclaimer Medis:</strong>
         AI ini hanya memberikan informasi kesehatan awal dan bukan pengganti diagnosis,
-        pemeriksaan, atau saran langsung dari tenaga medis profesional. Jika gejala Anda
-        berat, memburuk, atau darurat, segera periksa ke dokter atau fasilitas kesehatan terdekat.
+        pemeriksaan, atau saran langsung dari tenaga medis profesional.
       </div>
     </div>
-
 
     <div class="chat-input">
       <input id="userInput" placeholder="Tulis..." />
@@ -238,65 +248,4 @@
     </div>
 
   </div>
-
-  <script>
-    async function kirimPesan() {
-      let input = document.getElementById("userInput");
-      let teks = input.value.trim();
-
-      if (!teks) return;
-
-      tambahPesan(teks, "user");
-      input.value = "";
-
-      tambahPesan("⏳ Menghubungkan ke server...", "ai");
-
-      try {
-        let balasan = await responAI(teks);
-
-        hapusPesanTerakhir();
-        tambahPesan(balasan, "ai");
-
-      } catch (err) {
-        hapusPesanTerakhir();
-        tambahPesan("❌ Tidak bisa konek ke server", "ai");
-      }
-    }
-
-    function tambahPesan(teks, tipe) {
-      let box = document.getElementById("chatBox");
-      let div = document.createElement("div");
-
-      div.className = "pesan " + tipe;
-      div.innerText = teks;
-
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function hapusPesanTerakhir() {
-      let box = document.getElementById("chatBox");
-      box.removeChild(box.lastChild);
-    }
-
-    async function responAI(input) {
-      console.log("Kirim ke server...");
-
-      const res = await fetch("http://127.0.0.1:3000/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: input
-        })
-      });
-
-      const data = await res.json();
-      return data.reply;
-    }
-  </script>
-
-</body>
-
-</html>
+</div>

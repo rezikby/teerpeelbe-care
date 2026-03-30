@@ -1,3 +1,13 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+  const btn = document.getElementById("btnKirim");
+
+  if (btn) {
+    btn.addEventListener("click", kirimPesan);
+  }
+
+});
+
 async function kirimPesan() {
   let input = document.getElementById("userInput");
   let teks = input.value.trim();
@@ -52,4 +62,14 @@ async function responAI(input) {
   return data.reply;
 }
 
-<script src="{{ asset('js/ai.js') }}"></script>
+
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("btnKirim");
+
+  if (btn) {
+    btn.addEventListener("click", kirimPesan);
+    console.log("EVENT SIAP");
+  } else {
+    console.log("BUTTON GA KETEMU");
+  }
+});

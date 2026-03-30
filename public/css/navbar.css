@@ -48,7 +48,7 @@ body{
     gap: 20px;
 }
 
-/* Kotak Putih Lonjong (Hanya untuk Link) */
+
 .navbar .menu-links {
     display: flex;
     list-style: none;

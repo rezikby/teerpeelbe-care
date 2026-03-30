@@ -10,7 +10,7 @@
     <div class="nav-wrapper" id="menu">
         <ul class="menu-links">
             <li><a href="/">Beranda</a></li>
-            <li><a href="/ai-diagnosis">Ai Diagnosis</a></li>
+            <li><a href="#">Ai Diagnosis</a></li>
             <li><a href="/komunitas">Komunitas</a></li>
             <li><a href="/artikel">Artikel</a></li>
             <li><a href="/artikel">Booking Rs</a></li>
@@ -109,6 +109,8 @@
 
   </div>
 </section>
+
+
 <div class="stats">
   <div class="stat-item">
     <div class="stat-number">2.4k+</div>
@@ -224,6 +226,10 @@
   <button class="sos">SOS</button>
 
 </div>
+<div>
+
+</div>
+@include('layout.ai-page')
 <script>
 function toggleMenu(){
     const navWrapper = document.getElementById("menu");

@@ -9,8 +9,7 @@
 <body>
 
 @include('layout.navbar')
-
-
-
+@include('layout.rumahsakit')
+@include('layout.fotter')
 </body>
 </html>

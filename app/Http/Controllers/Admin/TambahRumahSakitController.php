@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TambahRumahSakitRequest;
-use App\Http\RequeTambahRumahSakitRequest;
 use App\Models\RumahSakit;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TambahRumahSakitController extends Controller
 {
-// nampil data rumah sakit
-    public function index()
+    // halaman dashboard
+    public function dashboard()
     {
-        // kek ambil data
-        return RumahSakit::all();
+        $rumahSakits = RumahSakit::latest()->get();
+        return view('admin.dashboard', compact('rumahSakits'));
     }
 
-
-    // create
+    // simpan data
     public function store(TambahRumahSakitRequest $request)
     {
-        // nyipan gamabr ke folder storage
-        $cover = $request->file('cover')->store('cover_rs', 'public');
+        $cover = null;
 
-        // create data baru
-        $rumahSakit = RumahSakit::create([
+        if ($request->hasFile('cover')) {
+            $cover = $request->file('cover')->store('cover_rs', 'public');
+        }
+
+        RumahSakit::create([
             'cover' => $cover,
             'nama_rumah_sakit' => $request->nama_rumah_sakit,
             'rating' => $request->rating,
@@ -36,38 +36,58 @@ class TambahRumahSakitController extends Controller
             'status' => $request->status
         ]);
 
-        return response()->json($rumahSakit);
+        return redirect()->route('admin.dashboard')->with('success', 'Data rumah sakit berhasil ditambahkan');
     }
 
-
-    // nampil data by id
-    public function show($id)
+    // halaman edit
+    public function edit($id)
     {
-        // cari rumahskit
-        return RumahSakit::findOrFail($id);
+        $rumahSakit = RumahSakit::findOrFail($id);
+        $rumahSakits = RumahSakit::latest()->get();
+
+        return view('admin.dashboard', compact('rumahSakit', 'rumahSakits'));
     }
 
-
-    // update rumah sakit
+    // update data
     public function update(TambahRumahSakitRequest $request, $id)
     {
-        // mencari data rumah sakit
         $rumahSakit = RumahSakit::findOrFail($id);
 
-        // update validasi 
-        $rumahSakit->update($request->validated());
+        $data = [
+            'nama_rumah_sakit' => $request->nama_rumah_sakit,
+            'rating' => $request->rating,
+            'alamat' => $request->alamat,
+            'nomor_kontak' => $request->nomor_kontak,
+            'kategori' => $request->kategori,
+            'nomor_kamar' => $request->nomor_kamar,
+            'status' => $request->status
+        ];
 
-        return response()->json($rumahSakit);
+        if ($request->hasFile('cover')) {
+            // hapus cover lama jika ada
+            if ($rumahSakit->cover && Storage::disk('public')->exists($rumahSakit->cover)) {
+                Storage::disk('public')->delete($rumahSakit->cover);
+            }
+
+            $data['cover'] = $request->file('cover')->store('cover_rs', 'public');
+        }
+
+        $rumahSakit->update($data);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Data rumah sakit berhasil diupdate');
     }
 
-
-    //hapus
+    // hapus data
     public function destroy($id)
     {
-        // ngpaus pake id
-        RumahSakit::destroy($id);
-        return response()->json([
-            'message' => 'Data berhasil dihapus'
-        ]);
+        $rumahSakit = RumahSakit::findOrFail($id);
+
+        if ($rumahSakit->cover && Storage::disk('public')->exists($rumahSakit->cover)) {
+            Storage::disk('public')->delete($rumahSakit->cover);
+        }
+
+        $rumahSakit->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Data rumah sakit berhasil dihapus');
     }
 }
